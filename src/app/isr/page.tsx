@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Image from "next/image";
 
 type Product = {
@@ -10,22 +7,20 @@ type Product = {
   thumbnail: string;
 };
 
-export default function CSRProductsPage() {
-  const [products, setProducts] = useState<Product[]>([]);
+async function fetchProducts() {
+  const res = await fetch("https://dummyjson.com/products?limit=20", {
+    next: { revalidate: 30 },
+  });
+  const data = await res.json();
+  return data.products as Product[];
+}
 
-  useEffect(() => {
-    const getData = async () => {
-      const res = await fetch("https://dummyjson.com/products?limit=20");
-      const data = await res.json();
-      setProducts(data.products);
-    };
-
-    getData();
-  }, []);
+export default async function ISRProductsPage() {
+  const products = await fetchProducts();
 
   return (
     <div>
-      <h1>CSR Example</h1>
+      <h1>ISR Example</h1>
       <ul>
         {products.map((product) => (
           <li key={product.id} style={{ marginBottom: "20px" }}>
