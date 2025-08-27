@@ -2,13 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-
-type Product = {
-  id: number;
-  title: string;
-  description: string;
-  thumbnail: string;
-};
+import { Product } from "./types/types";
 
 export default function CSRProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);

@@ -1,12 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
-
-type Product = {
-  id: number;
-  title: string;
-  description: string;
-  thumbnail: string;
-};
+import { Product } from "@/app/types/types";
 
 function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));

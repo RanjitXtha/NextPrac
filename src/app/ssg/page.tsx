@@ -1,11 +1,5 @@
 import Image from "next/image";
-
-type Product = {
-  id: number;
-  title: string;
-  description: string;
-  thumbnail: string;
-};
+import { Product } from "../types/types";
 
 async function fetchProducts() {
   const res = await fetch("https://dummyjson.com/products?limit=20", {

@@ -1,7 +1,6 @@
-export interface Posts {
-  albumId: number;
-  id: number;
-  title: string;
-  url: string;
-  thumbnailUrl: string;
-}
+export type Product = {
+    id: number;
+    title: string;
+    description: string;
+    thumbnail: string;
+};

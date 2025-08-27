@@ -1,11 +1,5 @@
 import { MetadataRoute } from "next";
-
-type Product = {
-    id: number;
-    title: string;
-    description: string;
-    thumbnail: string;
-};
+import { Product } from "./types/types";
 
 //for dynamic routes
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
