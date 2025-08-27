@@ -27,7 +27,7 @@ export async function generateMetadata({params}:{params:{id:string}}):Promise<Me
 }
 
 export async function generateStaticParams() {
-  const res = await fetch("https://dummyjson.com/products?limit=20");
+  const res = await fetch("https://dummyjson.com/products?limit=100");
   const data = await res.json();
 
   return data.products.slice(0, 2).map((product: Product) => ({

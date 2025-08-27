@@ -1,14 +1,9 @@
 import Image from "next/image";
-
-type Product = {
-  id: number;
-  title: string;
-  description: string;
-  thumbnail: string;
-};
+import Link from "next/link";
+import { Product } from "../types/types";
 
 async function fetchProducts() {
-  const res = await fetch("https://dummyjson.com/products?limit=20", {
+  const res = await fetch("https://dummyjson.com/products/category/fragrances?limit=100", {
     cache: "force-cache",
   });
   const data = await res.json();
@@ -23,16 +18,18 @@ export default async function SSGProductsPage() {
       <h1>SSG</h1>
       <ul>
         {products.map((product) => (
-          <li key={product.id} style={{ marginBottom: "20px" }}>
-            <b>{product.title}</b>
-            <p>{product.description}</p>
-            <Image
-              src={product.thumbnail}
-              alt={product.title}
-              width={150}
-              height={150}
-            />
-          </li>
+          <Link href={`/product/${product.id}`} key={product.id}>
+            <li style={{ marginBottom: "20px" }}>
+              <b>{product.title}</b>
+              <p>{product.description}</p>
+              <Image
+                src={product.thumbnail}
+                alt={product.title}
+                width={150}
+                height={150}
+              />
+            </li>
+          </Link>
         ))}
       </ul>
     </div>
